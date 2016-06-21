@@ -1,0 +1,29 @@
+﻿
+@model EncurtaUrl.Web.Models.Url
+@{
+    ViewBag.Title = "Encurtador de URLs";
+}
+
+<h2>Encurtar uma URL</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.LongURL, new { placeholder = "URL que você quer encurtar", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.CustomSegment, new { placeholder = "Entre com uma palavra personalizada para seu URL", @class = "form-control" })
+    </div>
+
+    if (!string.IsNullOrEmpty(Model.ShortURL))
+    {
+        <div>
+            <h3><a href="@Model.ShortURL" target="_blank">@Model.ShortURL</a></h3>
+        </div>
+    }
+
+    <input type="submit" class="btn btn-primary" value="Encurtar" />
+}
